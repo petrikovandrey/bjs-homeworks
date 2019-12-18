@@ -1,4 +1,6 @@
 //task 1
+"use strict";
+    
 function showSolutionsMessage(a, b, c) {
     console.log(`Вычисляем корни квадратного уравнения ${a}x² + ${b}x + ${c}`);
     let result = getSolutions(a, b, c);
@@ -6,14 +8,14 @@ function showSolutionsMessage(a, b, c) {
     if (result.d < 0) {
         console.log("равнение не имеет вещественных корней");
     } else if (result.d === 0) {
-        console.log(`Уравнение имеет один корень X₁ = ${result.roots.x1}`);
+        console.log(`Уравнение имеет один корень X₁ = ${result.roots[0]}`);
     } else {
-        console.log(`Уравнение имеет два корня. X₁ = ${result.roots.x1}, X₂ = ${result.roots.x2}`);
+        console.log(`Уравнение имеет два корня. X₁ = ${result.roots[0]}, X₂ = ${result.roots[1]}`);
     };
 }
 
 function getSolutions(a, b, c) {
-    "use strict";
+
     let d = 0,
         x1 = 0,
         x2 = 0,
@@ -23,9 +25,9 @@ function getSolutions(a, b, c) {
 
     d = b ** 2 - 4 * a * c;
     result.d = d;
-
+ 
     if (d < 0) {
-        return d;
+        return result;
     };
 
     sqrtD = Math.sqrt(d);
@@ -60,8 +62,9 @@ function getAverageScore(data) {
         console.log(key + ": " + data[key]);
         total += sum;
     };
-    average = Math.round(total / Object.keys(data).length);
-    data.average = average;
+    // data.average = Math.round(total / Object.keys(data).length);
+    data.average = total / Object.keys(data).length;
+    
     console.log(data.average);
     return data;
 }
