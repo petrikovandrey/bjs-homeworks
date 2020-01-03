@@ -64,7 +64,6 @@ function getAverageMark(marks) {
     for (let key in marks) {
         sum = getAverage(marks[key]);
         marks[key] = sum;
-        // console.log(key + ": " + marks[key]);
         total += sum;
     };
     marks.average = total / Object.keys(marks).length;
