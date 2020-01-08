@@ -23,3 +23,11 @@ console.log(compareArrays([8, 9], [6]));
 console.log(compareArrays([8, 10], [6, 1]));
 console.log(compareArrays([8, 1, 2], [8, 1, 2]));
 
+function memorize(fn, limit) {
+  
+    return fn;
+}
+
+const mSum = memorize(sum,5);
+console.log(mSum(2,5,3));
+console.log(mSum(10,10,10));
