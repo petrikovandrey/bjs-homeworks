@@ -33,11 +33,11 @@ function memorize(fn, limit) {
 
     return function optimSum(...args) {
         // console.log(results[0].args);
-        let result = results.find(
-            function compareArr(elements) {
-                console.log(args);
-                return elements.args.every((value, index) => value === args[index]);
-            });
+        let result = results.find(compareArrays(elements[index],args));
+            // function compareArr(elements) {
+            //     console.log(args);
+            //     return elements.args.every((value, index) => value === args[index]);
+            // });
 
         // console.log(result);
 
