@@ -79,32 +79,3 @@ function testCase() {
 }
 
 testCase();
-
-// return function (...args) {
-//     const result = results.find((value, index) => {
-//         return value.args[index] === args[index];
-//     });
-
-//     console.log(result);
-//     if (result) {
-//         console.log("I finded result");
-//         return result.result;
-//     };
-//     console.log("I will be make calculations");
-//     //const arg = args.join(', ');
-//     //console.log("in memorize " + arg);
-//     const calc = fn(arg);
-//     console.log("sum " + calc); 
-
-//     results.push(
-//         {
-//             args: args,
-//             result: calc
-//         });
-
-//     if (results.length - 1 > limit) {
-//         console.log("the memory is fully");
-//         results = result.slice(results.length - limit);
-//     };
-//     return calc;
-// }
