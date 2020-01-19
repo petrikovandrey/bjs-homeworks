@@ -5,7 +5,7 @@ function sleep(milliseconds) {
 
 function sum(...args) {
     // Замедление на половину секунды.
-    // sleep(500); // Можно использовать другое значение замедления.
+    sleep(500); // Можно использовать другое значение замедления.
     return args.reduce((sum, arg) => {
         return sum += +arg;
     }, 0);
@@ -24,27 +24,22 @@ console.log(compareArrays([8, 1, 2], [8, 1, 2]));
 
 function memorize(fn, limit) {
 
-    const results = [];
+    let results = [];
 
     return function () {
         const args = Array.from(arguments);
 
         const result = results.find((value, index) => {
-            if (value.args.length != args.length) {
-                return false;
-            }
-            return value.args[index] === args[index];
+            return compareArrays(value.args, args);
         });
 
-        console.log(result);
         if (result) {
-            console.log("I finded result");
+            console.log(`I finded result  ${result.result}`);
             return result.result;
         };
         console.log("I will be make calculations");
-        console.log(typeof args);
-        const calc = fn(args);
-        console.log("sum = " + calc);
+        const calc = fn(...args);
+        console.log(`sum =  ${calc}`);
 
         results.push(
             {
@@ -52,9 +47,10 @@ function memorize(fn, limit) {
                 result: calc
             });
 
-        if (results.length - 1 > limit) {
+        if (results.length > limit) {
             console.log("the memory is fully");
-            results = result.slice(results.length - limit);
+            results = results.slice(results.length - limit);
+            console.log(results.length)
         };
         return calc;
     }
@@ -63,15 +59,15 @@ function memorize(fn, limit) {
 
 function testCase() {
     const arrayForTest = [
-        [1, 2, 3], [1, 2], [1, 2, 3], [1, 2], [9, 5, 2, 4]
+        [1, 2, 3], [1, 2], [1, 2, 3], [1, 2, 3], [9, 5, 2, 4], [1, 5, 3], [3, 5, 2, 4]
     ];
     const mSum = memorize(sum, 3);
 
     console.time("testCase");
-    let i = 1;
+    let i = 5;
     while (i) {
         i--;
-        arrayForTest.forEach(item => mSum(item));
+        arrayForTest.forEach(item => mSum(...item));
     }
 
     console.timeEnd("testCase");
